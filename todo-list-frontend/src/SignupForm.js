@@ -9,7 +9,7 @@ function SignupForm() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/tasks/register', { username, password });
+      await axios.post(`${BACKEND_URL}/api/tasks/register`, { username, password });
       window.location.reload(); // Reload the page after successful signup
     } catch (error) {
       setError('Failed to sign up. Please try again.');

@@ -5,6 +5,8 @@ import LoginForm from './loginForm';
 import TaskForm from './TaskForm';
 import TaskList from './TaskList';
 import axios from 'axios';
+import BACKEND_URL from './config'; // Import the backend URL
+
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -49,7 +51,7 @@ function App() {
   const fetchTasks = async (userId) => {
     if (userId) {
       try {
-        const response = await axios.get('http://localhost:5000/api/tasks', { params: { userId } });
+        const response = await axios.get(`${BACKEND_URL}/api/tasks`, { params: { userId } });
         setTasks(response.data);
       } catch (error) {
         console.error('Failed to fetch tasks:', error);
@@ -61,9 +63,9 @@ function App() {
     try {
       const data = { ...task, userId };
       if (task._id) {
-        await axios.patch(`http://localhost:5000/api/tasks/${task._id}`, data);
+        await axios.patch(`${BACKEND_URL}/api/tasks/${task._id}`, data);
       } else {
-        await axios.post('http://localhost:5000/api/tasks', data);
+        await axios.post(`${BACKEND_URL}/api/tasks`, data);
       }
       fetchTasks(userId);
       setCurrentTask(null);
@@ -74,7 +76,7 @@ function App() {
 
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`, { data: { userId } });
+      await axios.delete(`${BACKEND_URL}/api/tasks/${id}`, { data: { userId } });
       fetchTasks(userId);
     } catch (error) {
       console.error('Failed to delete task:', error);
