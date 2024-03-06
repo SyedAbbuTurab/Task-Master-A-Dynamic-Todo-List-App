@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-function TaskForm({ saveTask, currentTask }) {
+function TaskForm({ saveTask, currentTask, userId }) {
   // Default empty task structure for initialization and resetting the form
   const emptyTask = {
     title: '', 
     description: '', 
     category: '', 
     deadline: '', // Ensure this is in 'YYYY-MM-DD' format for editing
-    completed: false
+    completed: false,
+    userId: userId // Assign userId to the task
   };
 
   // Initialize task state. Use emptyTask if currentTask is null or undefined

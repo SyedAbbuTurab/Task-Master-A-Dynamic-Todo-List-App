@@ -1,9 +1,8 @@
 import React from 'react';
-import TaskItem from './TaskItem'
+import TaskItem from './TaskItem';
 import './TaskList.css'; // Adjust the path if necessary
 
-
-function TaskList({ tasks, deleteTask, editTask }) {
+function TaskList({ tasks,  deleteTask, editTask, userId }) {
   return (
     <ul>
       {tasks.map(task => (
